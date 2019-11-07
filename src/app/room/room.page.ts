@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-room',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomPage implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+      } else {
+        this.navCtrl.navigateRoot('signin');
+      }
+    });
   }
 
 }
