@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  config: {
+    apiKey: 'AIzaSyBAskLsUn4sWhbdHKzWDKBKOYXqlwqI1MQ',
+    authDomain: 'awesome-chat-ebcde.firebaseapp.com',
+    databaseURL: 'https://awesome-chat-ebcde.firebaseio.com',
+    projectId: 'awesome-chat-ebcde',
+    storageBucket: 'awesome-chat-ebcde.appspot.com',
+    messagingSenderId: '805363169791'
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
