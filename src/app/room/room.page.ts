@@ -8,17 +8,29 @@ import * as firebase from 'firebase';
   styleUrls: ['./room.page.scss'],
 })
 export class RoomPage implements OnInit {
+  rooms = [];
 
   constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        firebase.database().ref('chatrooms/').on('value', resp => {
+          if (resp) {
+            this.rooms = [];
+            resp.forEach(childSnapshot => {
+              const room = childSnapshot.val();
+              room.key = childSnapshot.key;
+              this.rooms.push(room);
+            });
+          }
+        });
       } else {
         this.navCtrl.navigateRoot('signin');
       }
     });
   }
+
   async signOut() {
     try {
       await firebase.auth().signOut();
@@ -26,6 +38,8 @@ export class RoomPage implements OnInit {
 
     } catch (error) {}
   }
-
+  joinRoom(key) {
+    this.navCtrl.navigateRoot('chat/' + key);
+  }
 
 }
