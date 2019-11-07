@@ -16,8 +16,10 @@ jobs:
       with:
         hugo-version: '0.58.3'
 
-    - name: Build
-      run: hugo --gc --minify --cleanDestinationDir
+    - name: build
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
 
     - run: |
         npm install
